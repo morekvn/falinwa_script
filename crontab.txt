@@ -1,0 +1,1 @@
+0 1 * * * /usr/local/bin/backup_openerp_dbs.sh > /var/log/openerpcronbackup 2>&1
