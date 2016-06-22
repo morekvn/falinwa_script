@@ -12,11 +12,11 @@ MATCH_FIELD = 'name'
 
 
 #need openerp-client-lib installed, initialized the connection, pass the uid to avoid useless login call
-connection = openerplib.get_connection(hostname="120.24.220.138",
+connection = openerplib.get_connection(hostname="xxx.xxx.xxx.xxx",
                                                port=8069,
-                                               database="HPS",
+                                               database="CHANGETHISDATABASENAME",
                                                login="admin",
-                                               password="clean12admin",
+                                               password="CHANGETHISPASSWORD",
                                                protocol="jsonrpc",
                                                user_id=1)
 
@@ -45,7 +45,7 @@ for reference in refs:
     if not product_id_per_ref.get(reference):
         #Send error tout stderr instead of stdout
         print >> sys.stderr, "Missing product", reference
-        continue 
+        continue
 
     #Read the file of the current reference and encode it in base64 string
     with open(FOLDER + filename_per_ref[reference], "rb") as image_file:
@@ -56,7 +56,7 @@ for reference in refs:
     version_line_value = {
         'name' : reference, #put the line name you want
         'date' :  datetime.date.today().strftime("%Y-%m-%d"),
-        'type' : 'drawing', 
+        'type' : 'drawing',
         'datas' : encoded_string,
         'datas_fname' : filename_per_ref[reference],
         'filename' : filename_per_ref[reference], #Seems duplicate with datas_fname
@@ -75,7 +75,7 @@ for reference in refs:
     })
     print "Imported", reference
 
-#General remarks on fal_plm.py 
+#General remarks on fal_plm.py
 """
   fal_information_line_ids should be a one2many based on fal_information_line_id instead of a Many2Many
   two time the field "Filename" : filename and data_fname
